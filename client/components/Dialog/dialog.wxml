@@ -1,0 +1,20 @@
+<!--
+因json文件不能写注释，所以注释写在这里，以示提醒
+组件的json文件
+{
+  "component": true,        // 自定义组件声明，必须
+  "usingComponents": {}     // 可选项，用于引用了别的组件的声明，其他页面引用了该组件一样需要声明
+}
+-->
+<view class='wx_dialog_container' hidden="{{!isShow}}">
+    <view class='wx-mask'></view>
+    <view class='wx-dialog'>
+        <view class='wx-dialog-title'>{{ title }}</view>
+        <view class='wx-dialog-content'>{{ content }}</view>
+        <view class='wx-dialog-footer'>
+          <view class='wx-dialog-btn' catchtap='_cancelEvent'>{{ cancelText }}</view>
+          <view class='wx-dialog-btn' catchtap='_confirmEvent'>{{ confirmText }}</view>
+        </view>
+    </view>
+</view>
+

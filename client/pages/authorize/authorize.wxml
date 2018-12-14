@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="userinfo">
+    <button size="mini" open-type="openSetting" bindopensetting="openSetting">打开授权设置</button>
+    <button size="mini" bindtab="getSettingInfo">获取用户授权设置</button>
+    <!-- 用户点击该按钮时，会返回获取到的用户信息，回调的detail数据与wx.getUserInfo返回的一致 -->
+    <button size="mini" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取用户信息</button>
+    
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  
+  <view class="usermotto"><text class="user-motto">{{motto}}</text></view>
+  <view wx:if="{{hasUserInfo}}"><button bindtap="toBooks">进入书架</button></view>
+</view>
+<!-- "pages/authorize/authorize", -->
+
+
