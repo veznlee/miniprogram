@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+const api = require('../../config/config.js');
 
 /*
  * wx.canIUse(string) 
@@ -73,43 +74,43 @@ Page({
       withCredentials: true, // 非必填, 默认为true
 
       success: function (infoRes) {
-        console.log(infoRes, '>>>')
+        wx.request({
+          url: api.loginUrl,
+
+          data: {
+            iv: detail.iv,
+            signature: detail.signature,
+            rawData: JSON.parse(detail.rawData),
+            encryptedData: detail.encryptedData
+          },
+
+          success: function (res) {
+            console.log('login success');
+            res = res.data;
+            console.log(res);
+            if (res.result == 0) {
+              app.globalData.userInfo = res.userInfo;
+              wx.setStorageSync('userInfo', JSON.stringify(res.userInfo));
+              console.log(wx.getStorageSync('loginFlag'));
+              wx.setStorageSync('loginFlag', res.skey);
+              console.log(wx.getStorageSync('loginFlag'));
+              callback();
+            } else {
+              app.showInfo(res.errmsg);
+            }
+          },
+
+          fail: function (error) {
+            // 调用服务端登录接口失败
+            that.showInfo('调用接口失败');
+            console.log(error);
+          }
+        });
       },
       fail: function(){
 
       }
     })
-
-    // wx.request({
-    //   url: api.loginUrl,
-
-    //   data: {
-    //     iv: detail.iv,
-    //     signature: detail.signature,
-    //     rawData: JSON.parse(detail.rawData),
-    //     encryptedData: detail.encryptedData
-    //   },
-
-    //   success: function (res) {
-    //     console.log('login success');
-    //     res = res.data;
-    //     console.log(res);
-    //     if (res.result == 0) {
-    //       that.globalData.userInfo = res.userInfo;
-    //       wx.setStorageSync('userInfo', JSON.stringify(res.userInfo));
-    //       wx.setStorageSync('loginFlag', res.skey);
-    //       callback();
-    //     } else {
-    //       that.showInfo(res.errmsg);
-    //     }
-    //   },
-
-    //   fail: function (error) {
-    //     // 调用服务端登录接口失败
-    //     that.showInfo('调用接口失败');
-    //     console.log(error);
-    //   }
-    // });
   },
   // 打开授权设置
   openSetting: function(e) {

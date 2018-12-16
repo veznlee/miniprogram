@@ -46,7 +46,7 @@ App({
     // 登录动作
     doLogin: function (callback = () => {}) {
         let that = this;
-        wx.login({ // 获取code
+        wx.login({ // 获取code，时效5分钟
             success: function (loginRes) {
                 if (loginRes.code) {
                     console.log(loginRes.code);

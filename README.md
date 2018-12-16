@@ -59,3 +59,13 @@ mysql> source [sql文件路径]
 #### 注意点
 1. 如果想在手机上看到效果，需要手机和电脑的网络在同一局域网，例如，手机连电脑的wifi，然后请求地址修改成电脑的ip，不能用127.0.0.1或localhost
 2. 以上只针对手机调试，开发不需要
+
+
+3. 服务器在启动时，即使还没访问过小程序，也会生成一个token，16_wXZ_HzvM97hgdPSmbXjDf0wMp61E3Mtx59pr8mIUV23A0s6pV85kcjpRIAlRFapeG40dtOngrTjoLcZwxzC4aAq4KOlviu8Zw7SoRzNMTxGv5GriDw8IS2zavuwHxFiAqMFMTAzTDgOocfleBOUjADAUHN
+
+首次访问时：生成的token为
+16_wXZ_HzvM97hgdPSmbXjDf0wMp61E3Mtx59pr8mIUV23A0s6pV85kcjpRIAlRFapeG40dtOngrTjoLcZwxzC4aAq4KOlviu8Zw7SoRzNMTxGv5GriDw8IS2zavuwHxFiAqMFMTAzTDgOocfleBOUjADAUHN
+
+说明：token只跟小程序有关，只要有appid和secret，访问对应接口，便能唯一确定，跟小程序有没有启动和有没有用户登录无关。
+
+4. 微信支付开发参考https://blog.csdn.net/proteen/article/details/80875670

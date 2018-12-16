@@ -83,7 +83,7 @@ Page({
         let that = this;
         
         let formId = ev.detail.formId;
-        // 要获得真实有效的 formId 需要在真机上运行
+        // 要获得真实有效的 formId 需要在真机上运行，formid用于向用户推送消息
         console.log(formId); // the formId is a mock one
         
         if (that.checkUserInput()) {
@@ -106,6 +106,7 @@ Page({
                     if (res.data.result == 0) {
                         that.showInfo('评论成功', 'success', function() {
                             wx.setStorageSync('isFromBack', '1');
+                            // 返回上一层
                             setTimeout(function() {
                                 wx.navigateBack({
                                     delta: 1

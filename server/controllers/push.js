@@ -20,9 +20,9 @@ module.exports = {
             uname        = '', 
             utime        = moment().format('YYYY-MM-DD HH:mm:ss');
 
-        // 初始化模板id和跳转页面路由
+        // 初始化模板id和查看消息时要跳转到的页面路由
         const template_id = '/** your template_id **/',
-              page        = '/pages/books/books';
+              page        = '/pages/books/books'; 
 
         // 获取接口调用凭据token
         Push.getPusherToken()
